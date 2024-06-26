@@ -17,6 +17,7 @@ class Router
      * ルートの追加
      *
      * @param string $path
+     * @param callable(...):string $handler
      * @return void
      */
     public function add(string $path, callable $handler): void
@@ -33,7 +34,7 @@ class Router
      * @param string $path
      * @return array {
      *   isMatch: bool,
-     *   handler: ?callable,
+     *   handler: (callable(...):string)|null,
      *   params: array<string,string>,
      * }
      */
