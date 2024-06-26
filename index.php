@@ -1,6 +1,7 @@
 <?php
 
 require_once 'router.php';
+require_once 'handler.php';
 
 // http ルーティングによるリクエストの処理を実装します
 
@@ -25,9 +26,15 @@ $result = $router->route($path);
 // ルーティング結果によるレスポンスの返却
 
 if ($result['isMatch']) {
+    $requestHandler = new RequestHandler();
+
     $handler = $result['handler'];
     $params = $result['params'];
-    echo $handler(...array_values($params));
+
+    echo $requestHandler->handle(
+        $handler,
+        $params,
+    );
 } else {
     http_response_code(404);
     echo 'Not Found';
