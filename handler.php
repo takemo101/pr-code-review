@@ -13,6 +13,9 @@ class RequestHandler
         callable $handler,
         array $params,
     ): string {
+
+        // ルーティングに設定したハンドラにパラメータを渡して実行します
+
         return $handler(...array_values($params));
     }
 }
